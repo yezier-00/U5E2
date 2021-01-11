@@ -2,49 +2,62 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class main {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-//metodo quicksort con una lista
 		Scanner sn=new Scanner(System.in);
-		int vector[]=new int[5];
-		List <> lista=new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
-			System.out.println("dame elementos de la lista:");
-			int elemento=sn.nextInt();
-			lista.add(elemento);
-			//vector[i]=sn.nextInt();
+	main obj=new main();
+		System.out.println("dame los numeros:");
+		for (int i = 0; i < 5; i++) {			
+          int elemento = sn.nextInt();
+            obj.Insertar(elemento);			
 		}
-		System.out.println("lista desordenada:");
-		for (int i = 0; i < vector.length; i++) {
-			System.out.println(vector[i]);
-		}
-		//System.out.println(lista);
-		System.out.println("lista ordenada:");
-		main obj=new main();
-		obj.quick();
+		obj.QuickSort(0,obj.numeros.size()-1);
+        obj.mostrar();
+		
 		
 	}//main
-public void quick() {
-			int i,j,pivote,aux,primero,ultimo;
-			i=primero;
-			j=ultimo;
-			pivote=lista[primero+ultimo]/2;
-			do {
-				while (lista[i]<pivote) {
-					i++;
-				}
-				while (lista[j]>pivote) {
-					j--;
-				}
-				if (i<=j) {
-					aux=lista[i];
-					lista[i]=lista[j];
-					lista[j]=aux;
-					i++;
-					j--;
-				}
-			} while (i<=j);
-			
-		}
+	int aux;
+	List <Integer> numeros=new ArrayList<Integer>();
+	public void Insertar(int elemento)
+    {
+		numeros.add(elemento);
+    } 
+	public void QuickSort(int Primero, int Ultimo){
+	        int i, j, Pivote, aux;
+	        i = Primero;
+	        j = Ultimo;
+	        Pivote = numeros.get((Primero+Ultimo)/2);
+	        do{
+	            while(numeros.get(i)<Pivote)
+	            {
+	                i++;
+	            }
+	            while (numeros.get(j)>Pivote)
+	            {
+	                j--;
+	            }
+	            
+	            if(i<=j)
+	            {
+	            	
+	                aux=numeros.get(i);
+	                numeros.set(i, numeros.get(j));
+	                numeros.set(j, aux);
+	                i++;
+	                j--;
+	            }
+	        }while(i<=j);
+	        if(Primero < j)
+	        {
+	            QuickSort(Primero, j);
+	        }
+	        if(i<Ultimo)
+	        {
+	            QuickSort(i, Ultimo);
+	        }
+
+    }
+	public void mostrar() {
+		System.out.println("lista ordenada:");
+		System.out.println(numeros);
+	}
 }//class
